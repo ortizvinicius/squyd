@@ -45,7 +45,8 @@ class DbAccess {
 
   /* @param {array} options
    */
-  protected function optionsSet ($options) {
+  public function select ($options = []) {
+
     $options["fields"] = isset($options["fields"]) && $options["fields"] ? $options["fields"] : $this->tableFields;
     $options["join"]   = isset($options["join"])   && $options["join"]   ? $options["join"]   : [];
     $options["where"]  = isset($options["where"])  && $options["where"]  ? $options["where"]  : [];
@@ -53,15 +54,6 @@ class DbAccess {
     $options["group"]  = isset($options["group"])  && $options["group"]  ? $options["group"]  : "";
     $options["limit"]  = isset($options["limit"])  && $options["limit"]  ? $options["limit"]  : "";
     $options["single"] = isset($options["single"]) && $options["single"] ? $options["single"] : false;
-
-    return $options;
-  }
-
-  /* @param {array} options
-   */
-  public function select ($options = []) {
-
-    $options = $this->optionsSet($options);
 
     $lastFieldsKey = array_pop(array_keys($options["fields"]));
 
